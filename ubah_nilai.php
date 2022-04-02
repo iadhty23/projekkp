@@ -9,7 +9,6 @@ $data = $_GET["id"];
 $nilai = query("SELECT * FROM nilai2 WHERE id_nilai2 = $data");
 
 if( isset($_POST["simpan"]) ){
-
     if(ubahnilai($_POST) > 0 ){
         echo "
         <script>
@@ -28,7 +27,7 @@ if( isset($_POST["simpan"]) ){
 ?>
 
 <div id="layoutSidenav_content">
-                <main>
+<main>
 <form action="" method="post">
 <div style="padding-top: 25px;">
                         

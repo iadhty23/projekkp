@@ -1,6 +1,6 @@
 <?php 
 //koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "data");
+$conn = mysqli_connect("localhost", "root", "root", "data");
 
 
 function query($query){
@@ -15,6 +15,7 @@ function query($query){
 
 
 function tambah($data){
+    // var_dump($data);
     global $conn;
     // ambil data dari tiap elemen form
     $nama = htmlspecialchars($data["nama"]);
@@ -23,11 +24,11 @@ function tambah($data){
     $jabatan = htmlspecialchars($data["jabatan"]);
     $masakerja = htmlspecialchars($data["masakerja"]);
     $pend_ter = htmlspecialchars($data["pendidikan"]);
-
+    var_dump($pend_ter);
     // query insert data
     $query = "INSERT INTO  pegawai
                 VALUES
-                ('', '$nama', '$umur', '$kelamin', '$jabatan', '$masakerja', '$pend_ter')
+                (null, '$nama', '$umur', '$kelamin', '$jabatan', '$masakerja', '$pend_ter')
                 ";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
@@ -140,6 +141,12 @@ function tambahnilai($nilai){
 
     return mysqli_affected_rows($conn);
 
+}
+
+function hapus_penilaian($id){
+    global $conn;
+    mysqli_query($conn, "DELETE FROM nilai2 WHERE id_nilai2 = $id");
+    return mysqli_affected_rows($conn);
 }
 
 function ubahnilai($nilai){

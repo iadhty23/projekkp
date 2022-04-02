@@ -86,7 +86,7 @@ if($sus == 0){
         <td><?php echo number_format( $kriteria6, 2 ) ; ?></td>
         <td>
             <a href="ubah_nilai.php?id=<?= $row["id_nilai2"]; ?>" class="btn btn-warning btn-sm aksi">Ubah</a> |
-            <a href="hapus_nilai.php?id=<?= $row["id_nilai2"]; ?>" class="btn btn-danger btn-sm aksi" onclick="return confirm('yakin ingin menghapus?');">hapus</a>
+            <a href="proses_hapus.php?id=<?= $row["id_nilai2"]; ?>" class="btn btn-danger btn-sm aksi" onclick="return confirm('yakin ingin menghapus?');">hapus</a>
         </td>
     </tr>
     <?php $i++; ?>
