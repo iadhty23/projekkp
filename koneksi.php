@@ -115,8 +115,7 @@ function tambahLain($data){
 
 function tambahnilai($nilai){
     global $conn;
-    
-    $nama = $nilai["nama"];
+    $id_user = intval($nilai["nama"]);
     $k1 = $nilai["1"];
     $k2 = $nilai["2"];
     $k3 = $nilai["3"];
@@ -132,13 +131,11 @@ function tambahnilai($nilai){
     $k11 = $nilai["11"];
     $k12 = $nilai["12"];
     $k13 = $nilai["13"];
- 
-
-    $query = "INSERT INTO nilai2 VALUES('', '$nama', '$k1', '$k2', '$k3', '$k4', '$k5', '$k6', '$k7', '$k8', '$k9', '$k10',
-                                            '$k11', '$k12', '$k13')" ;
     
-    mysqli_query($conn, $query);
 
+    $query = "INSERT INTO nilai2 VALUES(null, '$id_user', '$k1', '$k2', '$k3', '$k4', '$k5', '$k6', '$k7', '$k8', '$k9', '$k10', '$k11', '$k12', '$k13')" ;
+    mysqli_query($conn, $query);
+    var_dump($query);
     return mysqli_affected_rows($conn);
 
 }
@@ -148,6 +145,8 @@ function hapus_penilaian($id){
     mysqli_query($conn, "DELETE FROM nilai2 WHERE id_nilai2 = $id");
     return mysqli_affected_rows($conn);
 }
+
+
 
 function ubahnilai($nilai){
     global $conn;
@@ -171,16 +170,13 @@ function ubahnilai($nilai){
     $k13 = $nilai["13"];
 
 
-    $query = " UPDATE nilai2 SET  nama = '$nama', k1 = '$k1', k2 = '$k2', k3 = '$k3', k4 = '$k4', k5 = '$k5', k6 = '$k6', k7 = '$k7', k8 = '$k8', k9 = '$k9', k10 = '$k10',
+    $query = " UPDATE nilai2 SET   k1 = '$k1', k2 = '$k2', k3 = '$k3', k4 = '$k4', k5 = '$k5', k6 = '$k6', k7 = '$k7', k8 = '$k8', k9 = '$k9', k10 = '$k10',
                                             k11 = '$k11', k12 = '$k12', k13 = '$k13' WHERE id_nilai2 = $id ";
     
     mysqli_query($conn, $query);
-
     return mysqli_affected_rows($conn);
 
 }
-
-
         function hapus($id){
             global $conn;
             mysqli_query($conn, "DELETE FROM pegawai WHERE id = $id");
@@ -196,6 +192,7 @@ function ubahnilai($nilai){
         function hapus_nilai($id){
             global $conn;
             mysqli_query($conn, "DELETE FROM nilai2 WHERE id_nilai2 = $id");
+            var_dump(mysqli_error($conn));
             return mysqli_affected_rows($conn);
         }
 

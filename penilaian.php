@@ -9,7 +9,8 @@ if( $sesi == "" || $sesi == "user" ){
     header("location:login.php");
 }
 
-$nilai = query("SELECT * FROM nilai2 ORDER BY id_nilai2");
+// $nilai = query("SELECT * FROM nilai2 ORDER BY id_nilai2");
+$nilai = query("SELECT * FROM nilai2 INNER JOIN pegawai ON pegawai.id = nilai2.id_user ORDER BY id_nilai2");
 $sus = count($nilai);
 
 
@@ -27,8 +28,30 @@ if($sus == 0){
 
 
     <?php if($jadi == 1) : ?>
-        <span class="blink">Data Kosong, Silahkan Klik Tambah Nilai</span>
+        <h3 class="blink">Data Kosong, Silahkan Klik Tambah Nilai</h3>
+             <div class="container-fluid px-4 mt-2">
+                       <a href="tambah_nilaipegawai.php" class="btn btn-primary mb-2">Tambah Nilai pegawai</a>
+                         <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Data Pegawai
+                            </div>
+                            <div class="card-body">
 
+                      <table id="datatablesSimple">
+   <thead>
+    <tr>
+        <th>NO.</th>
+        <th>Nama</th>
+        <th>Etika dan <br> Perilaku</th>
+        <th>Tanggung <br> Jawab</th>
+        <th>Kedisiplinan</th>
+        <th>Kecakapan <br> Kerja</th>
+        <th>Kehadiran</th>
+        <th colspan="2">AKSI</th>
+    </tr>
+</thead>
+    </table>
     <?php else : ?> 
      <div class="container-fluid px-4 mt-2">
                        <a href="tambah_nilaipegawai.php" class="btn btn-primary mb-2">Tambah Nilai pegawai</a>

@@ -1,5 +1,5 @@
 <?php include 'koneksi.php';
-include 'header.php'; 
+// include 'header.php'; 
 
 
 error_reporting(0);
@@ -7,17 +7,24 @@ error_reporting(0);
 $data = $_GET["id"];
 
 $nilai = query("SELECT * FROM nilai2 WHERE id_nilai2 = $data");
-
+// $nilai = query("SELECT * FROM nilai2 WHERE id_nilai2 = $data");
+$nilai = query("SELECT * FROM nilai2 INNER JOIN pegawai ON pegawai.id = nilai2.id_user  WHERE id_nilai2 = $data");
 if( isset($_POST["simpan"]) ){
     if(ubahnilai($_POST) > 0 ){
         echo "
         <script>
-            alert('data berhasil ditambahkan!');
+            alert('data berhasil diubah!');
             window.location = 'penilaian.php';
         </script>
         ";
     }else{
-        echo "gagal";
+       echo "
+        <script>
+            alert('data gagal diubah!');
+            window.location = 'penilaian.php';
+        </script>
+        ";
+        
     }
 
 }

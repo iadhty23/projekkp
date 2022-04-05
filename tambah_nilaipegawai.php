@@ -4,11 +4,11 @@ include 'koneksi.php';
 include 'header.php';
 $pegawai = query("SELECT * FROM pegawai");
 $nilai = query("SELECT * FROM nilai2");
-// $nama_pegawai = query("SELECT * FROM pegawai");
-
 
 if( isset($_POST["simpan"]) ){
+   var_dump($_POST);
     if(tambahnilai($_POST) > 0 ){
+        //  var_dump(mysqli_affected_rows($conn));
         echo "
         <script>
             alert('data berhasil ditambahkan!');
@@ -16,7 +16,14 @@ if( isset($_POST["simpan"]) ){
         </script>
         ";
     }else{
-        echo "gagal";
+        // var_dump(mysqli_error($conn));
+        echo "Data gagal dihapus" . mysqli_error($conn);
+        echo "
+        <script>
+            alert('data gagal ditambahkan!');
+            window.location = 'penilaian.php';
+        </script>
+        ";
     }
 }
 
@@ -45,7 +52,7 @@ if( isset($_POST["simpan"]) ){
         <select name="nama" class="form-control" id="nama">
         <option>-</option>
         <?php foreach ($pegawai as $peg) : ?>
-        <option> <?php echo $peg["nama"]; ?> </option>
+        <option value=<?php echo $peg["id"]; ?> > <?php echo $peg["nama"]; ?> </option>
         <?php endforeach; ?>
         <?php foreach ($nilai as $row) : ?>
         <?php endforeach; ?>
@@ -62,6 +69,7 @@ if( isset($_POST["simpan"]) ){
             </select>
         </td>
     </tr>
+   
 </table>
             </div>
 </div>
@@ -221,16 +229,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="" hiden>Menyelesaikan tugas yang <br> diberikan sampai tuntas </label>
                     </td>
                     <td>
-                        <input type="radio" name="5" value="1" <?php if ($row["k5"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="5" value="1" > 1
                     </td>
                     <td>
-                        <input type="radio" name="5" value="2" <?php if ($row["k5"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="5" value="2" > 2
                     </td>
                     <td>
-                        <input type="radio" name="5" value="3" <?php if ($row["k5"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="5" value="3" > 3
                     </td>
                     <td>
-                        <input type="radio" name="5" value="4" <?php if ($row["k5"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="5" value="4" > 4
                     </td>
                 </tr>
 
@@ -251,16 +259,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="">Kehadiran sesuai jam kerja</label>
                     </td>
                     <td>
-                        <input type="radio" name="6" value="1" <?php if ($row["k6"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="6" value="1"  > 1
                     </td>
                     <td>
-                        <input type="radio" name="6" value="2" <?php if ($row["k6"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="6" value="2"  > 2
                     </td>
                     <td>
-                        <input type="radio" name="6" value="3" <?php if ($row["k6"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="6" value="3"  > 3
                     </td>
                     <td>
-                        <input type="radio" name="6" value="4" <?php if ($row["k6"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="6" value="4"  > 4
                     </td>
                 </tr>
 
@@ -280,16 +288,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="" hiden>Ketaatan terhadap ketentuan pakaian</label>
                     </td>
                     <td>
-                        <input type="radio" name="7" value="1" <?php if ($row["k7"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="7" value="1" > 1
                     </td>
                     <td>
-                        <input type="radio" name="7" value="2" <?php if ($row["k7"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="7" value="2" > 2
                     </td>
                     <td>
-                        <input type="radio" name="7" value="3" <?php if ($row["k7"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="7" value="3" > 3
                     </td>
                     <td>
-                        <input type="radio" name="7" value="4" <?php if ($row["k7"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="7" value="4" > 4
                     </td>
                 </tr>
 
@@ -310,16 +318,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="">Mampu menjalankan tugas sesuai <br> petunjuk teknis </label>
                     </td>
                     <td>
-                        <input type="radio" name="8" value="1" <?php if ($row["k8"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="8" value="1" > 1
                     </td>
                     <td>
-                        <input type="radio" name="8" value="2" <?php if ($row["k8"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="8" value="2" > 2
                     </td>
                     <td>
-                        <input type="radio" name="8" value="3" <?php if ($row["k8"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="8" value="3" > 3
                     </td>
                     <td>
-                        <input type="radio" name="8" value="4" <?php if ($row["k8"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="8" value="4" > 4
                     </td>
                 </tr>
 
@@ -339,16 +347,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="" hiden>Teliti dan tekun dalam <br> bekerja</label>
                     </td>
                     <td>
-                        <input type="radio" name="9" value="1" <?php if ($row["k9"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="9" value="1" > 1
                     </td>
                     <td>
-                        <input type="radio" name="9" value="2" <?php if ($row["k9"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="9" value="2" > 2
                     </td>
                     <td>
-                        <input type="radio" name="9" value="3" <?php if ($row["k9"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="9" value="3" > 3
                     </td>
                     <td>
-                        <input type="radio" name="9" value="4" <?php if ($row["k9"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="9" value="4" > 4
                     </td>
                 </tr>
 
@@ -369,16 +377,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="">Ketrampilan dalam bekerja</label>
                     </td>
                     <td>
-                        <input type="radio" name="10" value="1" <?php if ($row["k10"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="10" value="1"  > 1
                     </td>
                     <td>
-                        <input type="radio" name="10" value="2" <?php if ($row["k10"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="10" value="2"  > 2
                     </td>
                     <td>
-                        <input type="radio" name="10" value="3" <?php if ($row["k10"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="10" value="3"  > 3
                     </td>
                     <td>
-                        <input type="radio" name="10" value="4" <?php if ($row["k10"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="10" value="4"  > 4
                     </td>
                 </tr>
 
@@ -398,16 +406,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="" >Tingkat komptensi karyawan dalam bekerja</label>
                     </td>
                     <td>
-                        <input type="radio" name="11" value="1" <?php if ($row["k11"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="11" value="1" > 1
                     </td>
                     <td>
-                        <input type="radio" name="11" value="2" <?php if ($row["k11"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="11" value="2" > 2
                     </td>
                     <td>
-                        <input type="radio" name="11" value="3" <?php if ($row["k11"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="11" value="3" > 3
                     </td>
                     <td>
-                        <input type="radio" name="11" value="4" <?php if ($row["k11"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="11" value="4" > 4
                     </td>
                 </tr>
 
@@ -427,16 +435,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="">Melaksanakan tugas secara transparan</label>
                     </td>
                     <td>
-                        <input type="radio" name="12" value="1" <?php if ($row["k12"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="12" value="1"  > 1
                     </td>
                     <td>
-                        <input type="radio" name="12" value="2" <?php if ($row["k12"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="12" value="2"  > 2
                     </td>
                     <td>
-                        <input type="radio" name="12" value="3" <?php if ($row["k12"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="12" value="3"  > 3
                     </td>
                     <td>
-                        <input type="radio" name="12" value="4" <?php if ($row["k12"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="12" value="4"  > 4
                     </td>
                 </tr>
 
@@ -456,16 +464,16 @@ if( isset($_POST["simpan"]) ){
                         <label for="" >Akuntabel</label>
                     </td>
                     <td>
-                        <input type="radio" name="13" value="1" <?php if ($row["k13"] == "1") echo 'checked' ?> > 1
+                        <input type="radio" name="13" value="1" > 1
                     </td>
                     <td>
-                        <input type="radio" name="13" value="2" <?php if ($row["k13"] == "2") echo 'checked' ?> > 2
+                        <input type="radio" name="13" value="2" > 2
                     </td>
                     <td>
-                        <input type="radio" name="13" value="3" <?php if ($row["k13"] == "3") echo 'checked' ?> > 3
+                        <input type="radio" name="13" value="3" > 3
                     </td>
                     <td>
-                        <input type="radio" name="13" value="4" <?php if ($row["k13"] == "4") echo 'checked' ?> > 4
+                        <input type="radio" name="13" value="4" > 4
                     </td>
                 </tr>
                 <tr>

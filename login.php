@@ -14,6 +14,8 @@ if(isset($_POST['login'])) {
         if($result['password'] == $pass) {
             $_SESSION['level'] = $result['level'];
             $_SESSION['user'] = $result['username'];
+            $_SESSION['nama'] = $result['nama'];
+            $_SESSION['id_user'] = $result['id_user'];
             if($result['level'] == 'user') {
                 header('location: pegawai/index.php');
             }else{

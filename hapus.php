@@ -1,20 +1,16 @@
-<?php
-    include "koneksi.php";
-
-    $data=$_GET['id'];
-
-	$query mysqli_query($conn, "DELETE FROM pegawai WHERE id = $id");
-	$query mysqli_query($conn, "DELETE FROM user WHERE id_user = $id");
-	$query mysqli_query($conn, "DELETE FROM nilai2 WHERE id_nilai2 = $id");
-
-    $result=mysqli_query($connect, $query);
-
-    if($result){
-        echo "Data berhasil berhapus";
-?>
-
-<?php
+<?php include 'koneksi.php';
+error_reporting(0);
+$id = $_GET["id"];
+if(hapus_nilai($id) > 0){
+// hapus_user($id);
+hapus($id);
+     echo "
+        <script>
+            alert('data berhasil dihapus!');
+            window.location = 'datapegawai.php';
+        </script>
+        ";
     }else{
-        echo "Data gagal dihapus" . mysqli_error($connect);
+        echo "gagal";
     }
 ?>

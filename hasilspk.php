@@ -7,7 +7,7 @@ include 'koneksi.php';
 include 'header.php';
 // query data pegawai berdasarkan id
 $mhs = query("SELECT * FROM bobot ")[0];
-$nilai = query("SELECT * FROM nilai2");
+$nilai = query("SELECT * FROM nilai2 INNER JOIN pegawai ON pegawai.id = nilai2.id_user ORDER BY id_nilai2");
 ?>
 
  <div id="layoutSidenav_content">

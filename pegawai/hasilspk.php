@@ -7,8 +7,9 @@ session_start();
 include '../koneksi.php';
 
 // query data pegawai berdasarkan id
+$nama = $_SESSION['nama'];
 $mhs = query("SELECT * FROM bobot ")[0];
-$nilai = query("SELECT * FROM nilai2");
+$nilai = query("SELECT * FROM nilai2 INNER JOIN pegawai ON pegawai.id = nilai2.id_user WHERE pegawai.nama = '$nama'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +113,9 @@ $nilai = query("SELECT * FROM nilai2");
         <header>
             <h3 align="center">Hasil Perangkingan</h3>
         </header>
-    
+        <?php 
+            var_dump($_SESSION);
+        ?>
         <?php $jumlahBobot = $mhs["c1"] + $mhs["c2"] + $mhs["c3"] + $mhs["c4"] + $mhs["c5"] +$mhs["c6"]  ;?>    
         <?php 
             $w1 = $mhs["c1"] / $jumlahBobot;

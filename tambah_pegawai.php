@@ -24,10 +24,11 @@ if( isset($_POST["submit"]) ){
         echo "
         <script>
             alert('data berhasil ditambahkan!');
-            window.location = 'index.php';
+            window.location = 'datapegawai.php';
         </script>
         ";
     }else{
+	
         echo "
         <script>
             alert('data gagal ditambahkan!');
